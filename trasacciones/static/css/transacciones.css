@@ -1,0 +1,36 @@
+  /* Add some basic styling to the buttons */
+  .editar-btn,
+  .eliminar-btn {
+      border: none;
+      padding: 20px 20px;
+      font-size: 16px;
+      cursor: pointer;
+  }
+
+  /* Add some color and hover effects to the buttons */
+  .editar-btn {
+      background-color: #4CAF50;
+      /* Green */
+      color: #ffffff;
+  }
+
+  .editar-btn:hover {
+      background-color: #3e8e41;
+      /* Darker green on hover */
+  }
+
+  .eliminar-btn {
+      background-color: #ff9800;
+      /* Orange */
+      color: #ffffff;
+  }
+
+  .eliminar-btn:hover {
+      background-color: #ff6900;
+      /* Darker orange on hover */
+  }
+
+  .horizontal-div {
+      display: inline-block;
+      padding: 10px;
+  }

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Gestion de dinero</h1>
+  <div class="content">
+    {% csrf_token %}
+    <a href="{% url 'payment' %}" class="link">Gastos</a>
+    <a href="{% url 'trasacciones' %}" class="link">Trasaccion</a>
+    <a href="{% url 'agregar_cuenta' %}" class="link">Agregar cuenta</a>
+    <a href="{% url 'agregar_categoria' %}" class="link">Agregar categoria</a>
+  </div>
+{% endblock %}

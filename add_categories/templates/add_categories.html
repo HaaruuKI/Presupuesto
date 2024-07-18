@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <form class="form" method="post">
+    {% csrf_token %}
+    <div>
+      <label for="nombre">Nombre de la categoria</label>
+      <input type="text" name="categoria" placeholder="Nombre de la categoria" class="input" required />
+    </div>
+    <div>
+      <label for="descripcion">Descripcion</label>
+      <textarea name="descripcion" placeholder="Descripcion" class="input" required></textarea>
+    </div>
+    <div style="padding-top: 5%;">
+      <button class="button" type="submit">Guardar</button>
+    </div>
+  </form>
+  <table>
+    <tr>
+      <th>Categorias</th>
+      <th>Descripciones</th>
+    </tr>
+    {% for category in categories %}
+      <tr>
+        <td>{{ category.0 }}</td>
+        <td>{{ category.1 }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+{% endblock %}
