@@ -112,16 +112,6 @@ def edit_transaction(request, id_transaction):
         description = request.POST['descripcion']
         account = request.POST['cuenta']
         category = request.POST['categoria']
-        # y = amount.replace("-", "")
-
-        # n = float(amount) - float(amount_sql)
-        # print(amount, amount_sql)
-        # if x > float(y):
-        #     print(f"{x} {y} 1")
-        #     print("Es mayor n que amount_sql")
-        # elif x < float(y):
-        #     print(f"{x} {y} 2")
-        #     print("Es mayor amount_sql que n")
             
         update_account_balance(account, amount, amount_sql)
         update_transaction_sql(date, amount, description, account, category, id_transaction)

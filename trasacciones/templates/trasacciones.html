@@ -37,6 +37,7 @@
                     {% csrf_token %}
                     <button type="button" onclick="location.href='{% url 'editar_transaccion' transaction.5 %}'" class="editar-btn">Editar</button>
                     <input type="hidden" name="id_transaccion" value="{{ transaction.5 }}" />
+                    <input type="hidden" name="monto" value="{{ transaction.2 }}" />
                     <button type="submit" class="eliminar-btn">Eliminar</button>
                   </form>
                 </td>

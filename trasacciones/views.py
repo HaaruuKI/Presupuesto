@@ -1,13 +1,31 @@
 from django.shortcuts import render
 import sqlite3
 
-def delete_transaccion_sql(id_tran):
+def delete_transaccion_sql(id_tran, amount):
     with sqlite3.connect('presupuesto.db') as conexion:
         cursor = conexion.cursor()
-        consulta = "DELETE FROM Transacciones WHERE ID_transaccion = ?;"
+        
+        # Get the ID_cuenta of the transaction
+        consulta = "SELECT ID_cuenta FROM Transacciones WHERE ID_transaccion =?"
+        cursor.execute(consulta, [id_tran])
+        id_cuenta = cursor.fetchone()[0]
+        
+        # Update the Saldo_actual of the account
+        consulta = "SELECT Saldo_actual FROM Cuentas WHERE ID_cuenta =?"
+        cursor.execute(consulta, [id_cuenta])
+        saldo_actual = cursor.fetchone()[0]
+        
+        n = amount.replace("-", "")
+        nuevo_saldo = saldo_actual + float(n)
+        consulta = "UPDATE Cuentas SET Saldo_actual =? WHERE ID_cuenta =?"
+        datos = (nuevo_saldo, id_cuenta)
+        cursor.execute(consulta, datos)
+        
+        # Delete the transaction
+        consulta = "DELETE FROM Transacciones WHERE ID_transaccion =?;"
         cursor.execute(consulta, [id_tran])
         conexion.commit()
-
+        
 def get_transactions(fecha_desde=None, fecha_hasta=None):
     with sqlite3.connect('presupuesto.db') as conexion:
         cursor = conexion.cursor()
@@ -42,7 +60,9 @@ def get_transactions(fecha_desde=None, fecha_hasta=None):
 def trasacciones(request):
     if request.POST:
         id_tran = request.POST['id_transaccion']
-        delete_transaccion_sql(id_tran)
+        amount = request.POST['monto']
+        delete_transaccion_sql(id_tran, amount)
+        
     fecha_hasta = request.GET.get('hasta_input')
     fecha_desde = request.GET.get('de_input')
     if fecha_hasta and fecha_desde:
