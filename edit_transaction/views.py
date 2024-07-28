@@ -1,7 +1,6 @@
 from django.shortcuts import redirect, render
 import sqlite3
 
-
 def update_account_balance(account_id, amount, amount_sql):
     with sqlite3.connect('presupuesto.db') as conexion:
         cursor = conexion.cursor()
@@ -9,18 +8,18 @@ def update_account_balance(account_id, amount, amount_sql):
         cursor.execute(consulta, (account_id,))
         current_balance = cursor.fetchone()[0]
         
-        balance = current_balance + float(amount) - float(amount_sql)
-        
-        if balance < current_balance:
-            # print(f"{balance}, menos")
-            new_balance = current_balance + float(amount_sql)
+        # Comprueba si el monto anterior es mayor o menor que el nuevo monto
+        if float(amount_sql) > float(amount):
+            # Si el monto anterior es mayor, suma la diferencia en la base de datos
+            new_balance = current_balance + (float(amount_sql) - float(amount))
         else:
-            # print(f"{balance}, mas")
-            new_balance = current_balance - float(amount_sql)
+            # Si el monto anterior es menor, resta la diferencia en la base de datos
+            new_balance = current_balance - (float(amount) - float(amount_sql))
         consulta = "UPDATE Cuentas SET Saldo_actual = ? WHERE ID_cuenta = ?"
         datos = (new_balance, account_id)
         cursor.execute(consulta, datos)
         conexion.commit()
+        
         
 def update_transaction_sql(date, amount, description, account, category, id_transaction):
     conexion = sqlite3.connect('presupuesto.db')
