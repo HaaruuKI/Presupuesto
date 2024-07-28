@@ -16,10 +16,9 @@ def add_transaction(date, description, amount, account, category):
         datos = (date, description, amount, account, category)
         cursor.execute(consulta, datos)
         conexion.commit()
-        amount_replace = amount.replace("-", "")
-        update_account_balance(account, amount_replace)
-        
-
+        amount = float(amount)
+        amount_decimal = round(amount,2)
+        update_account_balance(account, amount_decimal)
 
 def get_categories():
     with sqlite3.connect('presupuesto.db') as conexion:
@@ -49,7 +48,6 @@ def payments(request):
         amount = request.POST['monto']
         account = request.POST['cuenta']
         category = request.POST['categoria']
-        amount = f"-{amount}"
         add_transaction(date, description, amount, account, category)
     
     categories = get_categories()

@@ -9,14 +9,14 @@ def update_account_balance(account_id, amount, amount_sql):
         cursor.execute(consulta, (account_id,))
         current_balance = cursor.fetchone()[0]
         
-        new_balance = current_balance + float(amount) - float(amount_sql)
+        balance = current_balance + float(amount) - float(amount_sql)
         
-        if new_balance < 0:
-            new_balance = str(new_balance).replace("-", "")
-            print(f"{new_balance}, menos")
+        if balance < current_balance:
+            # print(f"{balance}, menos")
+            new_balance = current_balance + float(amount_sql)
         else:
-            print(f"{new_balance}, mas")
-        
+            # print(f"{balance}, mas")
+            new_balance = current_balance - float(amount_sql)
         consulta = "UPDATE Cuentas SET Saldo_actual = ? WHERE ID_cuenta = ?"
         datos = (new_balance, account_id)
         cursor.execute(consulta, datos)
