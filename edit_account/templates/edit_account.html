@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container text-center">
+    <h1>Editar Cuenta</h1>
+    {% for account in accounts %}
+      <form method="post" class="mx-auto w-50">
+        {% csrf_token %}
+        <div class="form-group">
+          <label class="label" for="name_account">Nombre de cuenta:</label>
+          <input class="inputs" type="text" id="name_account" name="name_account" value="{{ account.1 }}" required />
+        </div>
+        <div class="form-group">
+          <label class="label" for="type_account">Tipo: (Ejem. Cuenta corriente, credito o ahorro)</label>
+          <input class="inputs" type="" id="type_account" name="type_account" value="{{ account.2 }}" required />
+        </div>
+        <div class="form-group">
+          <label class="label" for="current_balance">Saldo actual:</label>
+          <input class="inputs" type="number" id="current_balance" name="current_balance" value="{{ account.3 }}" step="0.01" required />
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+      </form>
+    {% endfor %}
+  </div>
+{% endblock %}

@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'payments',
     'delete_transaction',
     'edit_transaction',
+    'edit_account',
 ]
 
 MIDDLEWARE = [

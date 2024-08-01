@@ -15,7 +15,7 @@ def add_account(account, type_account, current_balance):
 def get_account():
       with sqlite3.connect('presupuesto.db') as conexion:
         cursor = conexion.cursor()
-        consulta = "SELECT Nombre, Tipo, Saldo_actual FROM Cuentas"
+        consulta = "SELECT Nombre, Tipo, Saldo_actual, ID_cuenta FROM Cuentas"
         cursor.execute(consulta)
         return cursor.fetchall()
       
@@ -24,8 +24,8 @@ def add_accounts(request):
         account = request.POST['cuenta']
         type_account = request.POST['tipo']
         current_balance = request.POST['saldo_actual']
-        print( type(account), type(type_account), type(current_balance) )
-        print( account, type_account, current_balance )
+        # print( type(account), type(type_account), type(current_balance) )
+        # print( account, type_account, current_balance )
         add_account(account, type_account, current_balance)
     
     accounts = get_account()

@@ -30,6 +30,13 @@
         <td>{{ account.0 }}</td>
         <td>{{ account.1 }}</td>
         <td>{{ account.2 }}</td>
+        <td>
+          <form method="post">
+            {% csrf_token %}
+            <button type="button" onclick="location.href='{% url 'editar_cuenta' account.3 %}'" class="editar-btn">Editar</button>
+            <button class="eliminar-btn" type="submit">Eliminar</button>
+          </form>
+        </td>
       </tr>
     {% endfor %}
   </table>

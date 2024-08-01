@@ -10,4 +10,5 @@ urlpatterns = [
     path('',include("payments.urls")),
     path('',include("delete_transaction.urls")),
     path('',include("edit_transaction.urls")),
+    path('',include("edit_account.urls")),
 ]
