@@ -1,12 +1,76 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1>Gestion de dinero</h1>
-  <div class="content">
-    {% csrf_token %}
-    <a href="{% url 'payment' %}" class="link">Gastos</a>
-    <a href="{% url 'trasacciones' %}" class="link">Trasaccion</a>
-    <a href="{% url 'agregar_cuenta' %}" class="link">Agregar cuenta</a>
-    <a href="{% url 'agregar_categoria' %}" class="link">Agregar categoria</a>
-  </div>
+  <h1>BIENVENID@ {{ user }}</h1>
+  <form method="post">
+    <div class="group">
+      <input required type="text" class="input1" />
+      <span class="highlight"></span>
+      <span class="bar"></span>
+      <label class="label1">Ingreso</label>
+    </div>
+    <div>
+      <label for="account">Elige que cuenta deseas agregar el ingreso</label>
+      <select name="account" id="account">
+        <option value="1"></option>
+      </select>
+    </div>
+    <button class="btn-guardar" type="submit">Guardar ingreso</button>
+  </form>
+
+  <nav class="nav" aria-labelledby="nav-title-social">
+    <ul class="ul">
+      <li>
+        <h2 class="h2" id="nav-title-social">¿Que desea hacer?</h2>
+      </li>
+      <li>
+        <a class="a" href="{% url 'expenses' %}">
+          <i class="i" aria-hidden="true"></i>
+          Agregar gastos
+        </a>
+      </li>
+      <li>
+        <a class="a" href="{% url 'view_expenses' %}">
+          <i class="i" aria-hidden="true"></i>
+          Gastos
+        </a>
+      </li>
+      <li>
+        <a class="a" href="#">
+          <i class="i" aria-hidden="true"></i>
+          Mastodon
+        </a>
+      </li>
+      <li>
+        <a class="a" href="{% url 'logout_account' %}">
+          <i class="i" aria-hidden="true"></i>
+          Salir
+        </a>
+      </li>
+      {% comment %} <li>
+        <a class="a" href="https://www.youtube.com/c/alvaromontorocss" target="_blank">
+          <i class="fa-brands fa-youtube i" aria-hidden="true"></i>
+          YouTube
+        </a>
+      </li> {% endcomment %}
+      {% comment %} <li>
+        <a class="a" href="https://codepen.io/alvaromontoro" target="_blank">
+          <i class="fa-brands fa-codepen i" aria-hidden="true"></i>
+          CodePen
+        </a>
+      </li> {% endcomment %}
+      {% comment %} <li>
+        <a class="a" href="https://stackoverflow.com/users/3695983/alvaro-montoro" target="_blank">
+          <i class="fa-brands fa-stack-overflow i" aria-hidden="true"></i>
+          StackOverflow
+        </a>
+      </li> {% endcomment %}
+      {% comment %} <li>
+        <a class="a" href="https://es.stackoverflow.com/users/250/alvaro-montoro" target="_blank">
+          <i class="fa-brands fa-stack-overflow i" aria-hidden="true"></i>
+          StackOverflow (Espa&ntilde;ol)
+        </a>
+      </li> {% endcomment %}
+    </ul>
+  </nav>
 {% endblock %}

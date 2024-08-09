@@ -39,13 +39,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main',
-    'add_accounts',
-    'add_categories',
-    'trasacciones',
-    'payments',
-    'delete_transaction',
-    'edit_transaction',
-    'edit_account',
+    'add_expenses',
+    'view_expenses',
+    'edit_expenses',
+    # 'add_accounts',
+    # 'add_categories',
+    # 'trasacciones',
+    # 'delete_transaction',
+    # 'edit_transaction',
+    # 'edit_account',
 ]
 
 MIDDLEWARE = [
@@ -63,7 +65,7 @@ ROOT_URLCONF = 'presupuesto.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['/home/akizuki/Secrets/presupuesto/templates'],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -134,3 +136,4 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+LOGIN_REDIRECT_URL = '/index/'

@@ -5,12 +5,22 @@
 }
 
 body {
+    aperspective: 1000px;
+    position: relative;
+    margin: 0;
+    min-height: 60vh;
+    overflow: clip;
+    display: grid;
+    place-items: center;
+    transition: background 1s;
+    background: #fff;
     font-family: Arial, sans-serif;
     line-height: 1.6;
     color: #333;
     background-color: #f9f9f9;
     margin: 20px;
 }
+
 
 h1,
 h2 {
@@ -51,7 +61,7 @@ tr:nth-child(even) {
     background-color: #f9f9f9;
 }
 
-.input {
+/* .input {
     width: 100%;
     max-width: 220px;
     height: 45px;
@@ -74,7 +84,7 @@ tr:nth-child(even) {
 
 .input:focus {
     border: 2px solid grey;
-}
+} */
 
 
 .button[type="submit"] {
@@ -88,4 +98,72 @@ tr:nth-child(even) {
 
 .button[type="submit"]:hover {
     background-color: #3e8e41;
+}
+
+
+
+
+
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.inputs {
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+}
+
+.inputs[type="email"] {
+    padding: 10px;
+}
+
+/* Estilos para el botón */
+
+.btn {
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #3e8e41;
+}
+
+/* Estilos para el contenedor del formulario */
+
+.mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.w-50 {
+    width: 50%;
 }

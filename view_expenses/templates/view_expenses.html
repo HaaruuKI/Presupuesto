@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Editar o Borrar transaccion</h1>
+        <form method="get" id="filtro-form">
+          <div class="horizontal-div">
+            <label for="">De:</label>
+            <input type="date" name="de_input" class="input" />
+          </div>
+          <div class="horizontal-div">
+            <label for="">Hasta:</label>
+            <input type="date" name="hasta_input" class="input" />
+          </div>
+          <button type="submit" class="editar-btn">Filtrar</button>
+        </form>
+        <table>
+          <tr>
+            <th>Fecha</th>
+            <th>Descripcion</th>
+            <th>Monto</th>
+            <th>Cuenta</th>
+            <th>Categoria</th>
+          </tr>
+          <tbody>
+            {% for transaction in transactions %}
+              <tr>
+                <td>{{ transaction.0 }}</td>
+                <td>{{ transaction.1 }}</td>
+                <td>-{{ transaction.2 }}</td>
+                <td>{{ transaction.3 }}</td>
+                <td>{{ transaction.4 }}</td>
+                <td>
+                  <form method="post">
+                    {% csrf_token %}
+                    <button type="button" onclick="location.href='{% url 'edit_expenses' transaction.5 %}'" class="editar-btn">Editar</button>
+                    <input type="hidden" name="id_transaccion" value="{{ transaction.5 }}" />
+                    <input type="hidden" name="monto" value="{{ transaction.2 }}" />
+                    <button type="submit" class="eliminar-btn">Eliminar</button>
+                  </form>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+{% endblock %}
